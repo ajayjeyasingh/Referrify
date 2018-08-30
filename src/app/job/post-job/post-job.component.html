@@ -1,0 +1,168 @@
+<p-confirmDialog></p-confirmDialog>
+
+<div class="post-job-loading-spinner" *ngIf="isJobLocationLoading || isIndustryLoading || isFunctionalAreaLoading || isJobGettingPosted">
+  <mat-spinner [strokeWidth]="3" [diameter]="50"></mat-spinner>
+</div>
+
+<div class="container error-container">
+    <div *ngIf="isError" class="alert alert-danger text-align-center">
+        <h4>Oops! Something went wrong.</h4>
+        <h5>Please try again after some time.</h5>
+      </div>
+</div>
+
+<div *ngIf="!isJobLocationLoading && !isIndustryLoading && !isFunctionalAreaLoading && !isJobGettingPosted && !isError">
+
+  <div class="container post-job-title-container">
+      <div class="row">
+          <div class="col-md-12 text-align-center">
+            Post a job
+          </div>
+        </div>
+  </div>
+
+  <div class="container post-job-body-container">
+
+      <form>
+    
+        <div class="row">
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label class="post-job-form-label" for="jobRequisitionId">Job Requisition Id<span class="text-red text-bold">*</span></label>
+                  <input #jobRequisitionId="ngModel" [(ngModel)]="job.jobRequisitionId" type="text" name="jobRequisitionId" id="jobRequisitionId" class="form-control" placeholder="Ex. 198647" required>
+                  <small class="form-text text-muted">
+                    Identifier used by companies for uniquely identifying a job.
+                  </small>
+              </div>
+              <div *ngIf="jobRequisitionId.touched && !jobRequisitionId.valid" class="alert alert-danger">
+                Please enter the job requisition number.
+              </div>
+          </div>
+    
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label class="post-job-form-label" for="jobTitle">Job Title<span class="text-red text-bold">*</span></label>
+                  <input #jobTitle="ngModel" [(ngModel)]="job.jobTitle" type="text" name="jobTitle" id="jobTitle" class="form-control" placeholder="Ex. Senior Consultant" required>
+                  <small class="form-text text-muted">
+                    Please enter only the Job Title here.
+                  </small>
+              </div>
+              <div *ngIf="jobTitle.touched && !jobTitle.valid" class="alert alert-danger">
+                Please enter the job title.
+              </div>
+          </div>
+        </div>
+    
+        <div class="row">
+          <div class="col-md-12">
+              <div class="form-group">
+                  <label class="post-job-form-label" for="jobDescription">Job Description<span class="text-red text-bold">*</span></label>
+                  <textarea #jobDescription="ngModel" [(ngModel)]="job.jobDescription" name="jobDescription" id="jobDescription" class="form-control" rows="10" placeholder="Ex. Java with Spring, Core Java, Hibernate and Rest services." required></textarea>
+                  <small class="form-text text-muted">
+                    Please enter the skills, basic qualifications and necessary qualifications required for the job here.
+                  </small>
+              </div>
+              <div *ngIf="jobDescription.touched && !jobDescription.valid" class="alert alert-danger jobDescription-alert">
+                Please enter the job description.
+              </div>
+          </div>
+          
+        </div>
+    
+        <div class="row">
+    
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="post-job-form-label">Work Experience (Years)<span class="text-red text-bold">*</span></label> 
+              <div class="row workEx-inner-row">
+                <div class="col-md-5">
+                  <select #minWorkExperience="ngModel" [(ngModel)]="job.minWorkExperience" (change)="workExMinValueChanged(minWorkExperience)" name="minWorkExperience" id="minWorkExperience" class="form-control">
+                    <option value="-1">Minimum</option>
+                    <option [ngValue]="value" *ngFor="let value of workExMinRange">{{ value }}</option>
+                  </select>
+                </div>
+                <div class="col-md-2 form-text">
+                  <label class="post-job-form-label">To</label> 
+                </div>
+                <div class="col-md-5">
+                  <select #maxWorkExperience="ngModel" [(ngModel)]="job.maxWorkExperience" [disabled]="isWorkExMaxDropDownDisabled" name="maxWorkExperience" id="maxWorkExperience" class="form-control">
+                    <option value="-1">Maximum</option>
+                    <option [ngValue]="value" *ngFor="let value of workExMaxRange">{{ value }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="minWorkExperience.touched && (job.minWorkExperience == -1 || job.maxWorkExperience == -1)" class="alert alert-danger">
+              Please select a valid work experience.
+            </div>
+          </div>
+    
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="jobLocation" class="post-job-form-label">Job Location<span class="text-red text-bold">*</span></label>
+              <select #jobLocation="ngModel" [(ngModel)]="job.jobLocation" name="jobLocation" id="jobLocation" class="form-control">
+                <option value="-1">Select</option>
+                <option [ngValue]="location.id" *ngFor="let location of locations">{{ location.name }}</option>
+              </select>
+            </div>
+            <div *ngIf="jobLocation.touched && job.jobLocation == -1" class="alert alert-danger">
+              Please select a Job Location.
+            </div>
+          </div>
+    
+        </div>
+    
+        <div class="row">
+    
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="industry" class="post-job-form-label">Industry<span class="text-red text-bold">*</span></label>
+              <select #industry="ngModel" [(ngModel)]="job.industry" name="industry" id="industry" class="form-control">
+                <option value="-1">Select</option>
+                <option [ngValue]="industry.id" *ngFor="let industry of industries">{{ industry.name }}</option>
+              </select>
+            </div>
+            <div *ngIf="industry.touched && job.industry == -1" class="alert alert-danger">
+              Please select an industry.
+            </div>
+          </div>
+    
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="functionalArea" class="post-job-form-label">Functional Area<span class="text-red text-bold">*</span></label>
+              <select #functionalArea="ngModel" [(ngModel)]="job.functionalArea" name="functionalArea" id="functionalArea" class="form-control">
+                <option value="-1">Select</option>
+                <option [ngValue]="functionalArea.id" *ngFor="let functionalArea of functionalAreas">{{ functionalArea.name }}</option>
+              </select>
+            </div>
+            <div *ngIf="functionalArea.touched && job.functionalArea == -1" class="alert alert-danger">
+              Please select a functional area.
+            </div>
+          </div>
+    
+        </div>
+    
+        <div class="row">
+          <div class="col-md-6">
+              <button [routerLink]="['/']" type="button" class="btn btn-warning main-button medium-size-button wide-button">
+                  <i class="fa fa-remove"></i> Cancel
+              </button>
+          </div>
+    
+          <div class="col-md-6">
+              <button (click)="confirmPost()" [disabled]="!job.jobRequisitionId || !job.jobTitle || !job.jobDescription || job.minWorkExperience == -1 || job.maxWorkExperience == -1 || job.jobLocation == -1 || job.industry == -1 || job.functionalArea == -1" 
+              class="btn btn-warning main-button medium-size-button wide-button">
+                  <i class="fa fa-check"></i> Submit
+              </button>
+          </div>
+        </div>
+    
+      </form>
+    
+    </div>
+
+</div>
+
+
+
+

@@ -1,0 +1,125 @@
+.container {
+    border: 1px solid #343a40;
+    border-radius: 8px;
+    background-color: #fff0c4;
+    width: 75%;
+}
+
+.error-container {
+    border: none;
+    background-color: transparent;
+    width: 50%;
+}
+
+.apply-button-container {
+    border: none;
+    background-color: transparent;
+    margin-top: 15px;
+}
+
+.apply-button {
+    font-weight: 600;
+    font-size: 25px;
+    width: 25%;
+}
+
+.job-title-container {
+    background-color: #343a40;
+    color: #fff0c4;
+    font-weight: 500;
+    font-size: 25px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    margin-bottom: 0px;
+}
+
+.job-body-container {
+    font-size: 18px;
+    border-radius: 0px;
+    margin-top: 0px;
+}
+
+.job-footer-container {
+    background-color: #343a40;
+    color: #fff0c4;
+    font-size: 18px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    margin-top: 0px;
+}
+
+.job-body-container .row {
+    padding: 20px;
+}
+
+.job-title-container .row {
+    padding: 5px;
+}
+
+hr {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.view-job-loading-spinner {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+
+.badge {
+    font-size: 1.25rem;
+    font-weight: normal;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .container {
+        width: 98%;
+    }
+
+    .job-title-container {
+        font-size: 15px;
+    }
+
+    .job-body-container {
+        font-size: 15px;
+    }
+    
+    .job-footer-container {
+        font-size: 15px;
+    }
+
+    .badge {
+        font-size: 1rem;
+        margin-bottom: 2px;
+    }
+
+    .job-body-container .row {
+        padding: 10px;
+    }
+
+    .job-title-container .row {
+        padding: 2px;
+    }
+
+    .col-md-4 {
+        margin-bottom: 3px;
+    }
+
+    .col-md-6 {
+        width: 130px;
+    }
+
+    .apply-button {
+        font-weight: 600;
+        font-size: 15px;
+        width: 100%;
+    }
+
+    .apply-button-column {
+        padding: 0px;
+    }
+
+}

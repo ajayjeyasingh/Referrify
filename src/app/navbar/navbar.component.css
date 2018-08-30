@@ -1,0 +1,13 @@
+.navbar {
+    border-bottom: 3px solid #ffc107;
+}
+
+.navbar .navbar-brand {
+    color: #ffc107;
+    font-size: 30px;
+    padding: 0px;
+}
+
+.navbar-text {
+    color: #e9ecef;
+}

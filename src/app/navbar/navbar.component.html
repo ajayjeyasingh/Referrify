@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand font-weight-bold" href="/">Referrify</a>
+
+  <button class="navbar-toggler" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" [attr.aria-expanded]="!isNavbarCollapsed" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" [ngbCollapse]="isNavbarCollapsed">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item" *ngIf="!isUserAuthenticated()">
+        <a class="nav-link pointer" (click)="navigateToRegister()">Register</a>
+      </li>
+      <li class="nav-item" *ngIf="!isUserAuthenticated()">
+        <a class="nav-link pointer" (click)="navigateToLogin()">Login</a>
+      </li>
+      <li class="nav-item" *ngIf="isUserAuthenticated()">
+        <span class="navbar-text">Hi {{ getUsername() }}!</span>
+      </li>
+      <li class="nav-item" *ngIf="isUserAuthenticated()">
+        <a class="nav-link pointer" (click)="isNavbarCollapsed = true;logout()">Logout</a>
+      </li>
+    </ul>
+
+  </div>
+
+</nav>

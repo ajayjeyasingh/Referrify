@@ -1,0 +1,87 @@
+
+<div class="container text-align-center">
+
+    <div class="row">
+      <div class="col-md-12">
+          <div class="search-title">
+              Find Jobs
+          </div>
+          <div class="input-group search-input-group">
+              <input [(ngModel)]="query" type="text" class="form-control search-input" placeholder="Enter skills, designation, company, location...">
+              <div class="input-group-append">
+                  <button (click)="query.trim().length > 0 && search()" class="btn btn-outline-secondary main-button search-button" type="button">
+                    <i class="fa fa-search"></i>
+                  </button>
+              </div>
+          </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="find-job-loading-spinner" *ngIf="isJobsLoading">
+    <mat-spinner [strokeWidth]="3" [diameter]="50"></mat-spinner>
+  </div>
+
+  <div *ngIf="isError" class="container error-container">
+    <div class="alert alert-danger text-align-center">
+        <h4>Oops! Something went wrong.</h4>
+        <h5>Please try again after some time.</h5>
+    </div>
+ </div>
+
+ <div *ngIf="isEmptyResult" class="container error-container">
+    <div class="alert alert-primary text-align-center">
+        <h5><span class="fa fa-info-circle"></span> No jobs matched your search!</h5>
+    </div>
+ </div>
+
+  <div *ngIf="!isJobsLoading && !isError">
+    <div *ngFor="let job of jobs">
+        <div class="container job-title-container text-align-center">
+
+                <div class="row">
+                  <div class="col-md-12">
+                      <div>
+                         <i class="fa fa-briefcase"></i> {{ job.title }}
+                      </div>
+                  </div>
+                </div>
+          
+            </div>
+          
+            <div class="container job-body-container">
+          
+                <div class="row job-body-row-margin">
+                  <div class="col-md-12">
+                        {{ job.description }}
+                  </div>
+                </div>
+          
+                <div class="row job-body-row-margin">
+                  <div class="col-md-4">
+                      <span class="badge badge-dark"><i class="fa fa-building-o"></i> Company</span> <p>{{ job.company }}</p>
+                  </div>
+                  <div class="col-md-4">
+                      <span class="badge badge-dark"><i class="fa fa-file-code-o"></i> WorkEx</span> <p>{{ job.minWorkExperience + " to " + job.maxWorkExperience + " years" }}</p>
+                  </div>
+                  <div class="col-md-4">
+                      <span class="badge badge-dark"><i class="fa fa-location-arrow"></i> Location</span> <p>{{ job.location }}</p>
+                  </div>
+                </div>
+          
+                <hr>
+          
+                <div class="row job-footer-row-margin">
+                    <div class="col-md-6 text-align-left">
+                      <span class="badge badge-dark"><i class="fa fa-calendar-o"></i></span> {{ job.postedDate }}
+                    </div>
+                    <div class="col-md-6 text-align-right">
+                      <button [routerLink]="['/Job', job.id]" type="button" class="btn btn-warning main-button apply-button">Apply <i class="fa fa-long-arrow-right vertical-align-middle"></i></button>
+                    </div>
+                </div>
+          
+            </div>
+  </div>
+  </div>
+  

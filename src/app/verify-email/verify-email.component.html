@@ -1,0 +1,48 @@
+<div class="container" *ngIf="!isLoading && !isError">
+  <div class="row">
+      <div class="col-md-12">
+        <h2 class="heading">Awesome!</h2>
+        <h4 class="sub-heading">Your email has been verified successfully!</h4>
+      </div>
+    </div>
+    <hr>
+    <div class="row normal-text">
+      <div class="col-md-12">
+        <p>Please use the below link to log into Referrify.</p>
+
+        <p>
+          <button [routerLink]="['/Login']" class="btn btn-warning main-button medium-size-button">Login</button>
+        </p>
+      </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="!isLoading && isError">
+    <div class="row">
+        <div class="col-md-12">
+          <h2 class="heading">Oops!</h2>
+          <h4 class="sub-heading">Something went amiss!</h4>
+        </div>
+      </div>
+      <hr>
+      <div class="row normal-text">
+        <div class="col-md-12">
+          <p>{{ errorMessage }}</p>
+          <p>
+            <button [routerLink]="['/']" class="btn btn-warning main-button medium-size-button">Go Home</button>
+          </p>
+        </div>
+      </div>
+  </div>
+
+  <div class="container" *ngIf="isLoading">
+    <div class="row">
+        <div class="col-md-12">
+          <h2 class="heading">Verifying Email</h2>
+        </div>
+      </div>
+      <hr>
+      <div class="loading-spinner">
+        <mat-spinner [strokeWidth]="3" [diameter]="50"></mat-spinner>
+      </div>
+  </div>

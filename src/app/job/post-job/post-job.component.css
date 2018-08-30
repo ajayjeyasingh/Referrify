@@ -1,0 +1,88 @@
+.container {
+    border: 1px solid #343a40;
+    border-radius: 8px;
+    background-color: #fff0c4;
+    width: 75%;
+}
+
+.post-job-title-container {
+    background-color: #343a40;
+    color: #fff0c4;
+    font-weight: 500;
+    font-size: 25px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    margin-bottom: 0px;
+}
+
+.post-job-title-container .row {
+    padding: 5px;
+}
+
+.post-job-body-container {
+    font-size: 18px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    margin-top: 0px;
+}
+
+.error-container {
+    border: none;
+    background-color: transparent;
+    width: 50%;
+}
+
+.post-job-form-label {
+    font-weight: 500;
+}
+.row {
+    padding: 10px;
+}
+
+hr {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.workEx-inner-row {
+    padding: 0px;
+}
+
+.wide-button {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.post-job-loading-spinner {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+
+.alert {
+    padding: 5px;
+    text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .container {
+        width: 100%;
+    }
+
+    .post-job-title-container {
+        font-size: 23px;
+    }
+
+    .post-job-body-container {
+        font-size: 15px;
+    }
+    
+    .row {
+        padding: 10px 0px;
+    }
+    
+}
+
+

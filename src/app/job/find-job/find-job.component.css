@@ -1,0 +1,133 @@
+.container {
+    border: 1px solid #343a40;
+    border-radius: 8px;
+    background-color: #fff0c4;
+    width: 75%;
+    margin-bottom: 30px;
+}
+
+.error-container {
+    border: none;
+    background-color: transparent;
+    width: 50%;
+}
+
+.job-title-container {
+    background-color: #343a40;
+    color: #fff0c4;
+    font-weight: 500;
+    font-size: 23px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    margin-bottom: 0px;
+}
+
+.job-body-container {
+    font-size: 18px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    margin-top: 0px;
+}
+
+.search-input {
+    height: 45px;
+    font-size: 20px;
+}
+
+.search-button {
+    font-size: 20px;
+    width: 100px;
+}
+
+.search-input-group {
+    padding-top: 10px;
+    padding-bottom: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.search-title {
+    padding-top: 10px;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+hr {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.job-body-row-margin {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.job-footer-row-margin {
+    margin-top: 5px;
+    margin-bottom: 3px;
+}
+
+.badge {
+    font-size: 90%;
+    font-weight: normal;
+}
+
+.apply-button {
+    font-size: 90%;
+    font-weight: normal;
+    padding: 0.25em 1em;
+}
+
+.col-md-4 {
+    width: auto;
+}
+
+.find-job-loading-spinner {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+
+
+@media only screen and (max-width: 600px) {
+
+    .container {
+        width: 98%;
+    }
+
+    .job-title-container {
+        font-weight: 500;
+        font-size: 20px;
+    }
+    
+    .job-body-container {
+        font-size: 15px;
+    }
+
+    .search-input {
+        height: 35px;
+        font-size: 15px;
+    }
+    
+    .search-button {
+        font-size: 13px;
+        width: 50px;
+    }
+    
+    .search-input-group {
+        padding-top: 10px;
+        padding-bottom: 40px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .search-title {
+        font-weight: 500;
+        font-size: 23px;
+    }
+
+    .col-md-6 {
+        width: 130px;
+    }
+}

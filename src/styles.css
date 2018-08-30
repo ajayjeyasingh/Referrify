@@ -1,1 +1,124 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+body {
+    color: #343a40;
+}
+
+.heading {
+    font-size: 30px;
+}
+
+.normal-text {
+    font-size: 18px;
+
+}
+
+.sub-heading {
+    font-size: 20px;
+}
+
+.main-button {
+    background-color: #343a40;
+    color: #ffc107;
+}
+
+.main-button:hover {
+    color: #ffc107;
+    background-color: #343a40;
+}
+
+.main-button:disabled {
+    color: #ffc107;
+    background-color: #343a40;
+}
+
+.medium-size-button {
+    font-size: 20px;
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #343a40;
+}
+
+.white-background {
+    background-color: #ffffff;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.remove-right-border {
+    border-right: #ffffff;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.text-align-right {
+    text-align: right;
+}
+
+.text-red {
+    color: #ff0000;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.vertical-align-middle {
+    vertical-align: middle;
+}
+
+.ui-overflow-hidden {
+    position: unset !important;
+}
+
+.ui-widget-content .ui-button, .ui-widget.ui-button, .ui-button {
+    background: #343a40 !important;
+    color: #ffc107 !important;
+    border: 1px solid #ffc107 !important;
+}
+
+.ui-widget-header {
+    background: #343a40 !important;
+    color: #ffc107 !important;
+}
+
+.ui-dialog .ui-dialog-titlebar-icon {
+    color: #ffc107 !important;
+    background: #343a40 !important;
+    border: 1px solid #ffc107 !important;
+}
+
+.ui-widget-content {
+    border: 1px solid #ffc107 !important;
+}
+
+.ui-dialog-content {
+    border: none !important;
+}
+
+.ui-dialog-footer {
+    border: none !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .heading {
+        font-size: 24px;
+    }
+
+    .sub-heading {
+        font-size: 18px;
+    }
+    
+    .normal-text {
+        font-size: 14px;
+    
+    }
+}

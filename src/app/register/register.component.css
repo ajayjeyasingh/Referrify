@@ -1,0 +1,46 @@
+.container {
+    text-align: center;
+    width: 500px;
+    border: 1px solid #343a40;
+    border-radius: 8px;
+    background-color: #fff0c4;
+}
+
+.row {
+    padding: 10px;
+}
+
+
+hr {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.domain-name {
+    font-weight: bold;
+}
+
+.alert {
+    padding: 5px;
+}
+
+.companies-loading-spinner {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+.registration-form-label {
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 300px;
+    }
+
+    .domain-name {
+        font-size: 11px;
+    }
+}

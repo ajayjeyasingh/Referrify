@@ -1,0 +1,49 @@
+.container {
+    text-align: center;
+    width: 450px;
+    border: 1px solid #343a40;
+    border-radius: 8px;
+    background-color: #fff0c4;
+}
+
+.row {
+    padding: 10px;
+}
+
+hr {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.alert {
+    height: auto;
+    font-size: 17px;
+}
+
+.form-group-element {
+    margin-top: 25px;
+}
+
+.input-group {
+    height: 50px;
+}
+
+.form-control {
+    height: 50px;
+}
+
+.login-button {
+    width: 100%;
+    height: 50px;
+}
+
+.login-button-container {
+    margin-bottom: 40px;
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 300px;
+    }
+
+}

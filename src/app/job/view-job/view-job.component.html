@@ -1,0 +1,135 @@
+<div class="view-job-loading-spinner" *ngIf="isJobLoading">
+  <mat-spinner [strokeWidth]="3" [diameter]="50"></mat-spinner>
+</div>
+
+  <div class="container error-container">
+      <div class="alert alert-danger text-align-center" *ngIf="isError">
+          <div *ngIf="isJobNotFound">
+            <h4>404! Job not found.</h4>
+          </div>
+          <div *ngIf="!isJobNotFound">
+            <h4>Oops! Something went wrong.</h4>
+            <h5>Please try again after some time.</h5>
+          </div>
+        </div>
+  </div>
+ 
+  <div *ngIf="!isJobLoading && !isError">
+    <div class="container job-title-container text-align-center">
+        <div class="row">
+            <div class="col-md-12">
+              <i class="fa fa-briefcase"></i> {{ job.title }}
+            </div>
+        </div>
+    </div>
+
+     
+
+    <div class="container job-body-container">
+
+        <div class="row">
+          <div class="col-md-12">
+            <div>
+                <span class="badge badge-dark"><i class="fa fa-file-text-o"></i> Description</span>
+            </div>
+            <div>
+              {{ job.description }}
+            </div>
+          </div>
+        </div>
+      
+        <div class="row">
+            <div class="col-md-4">
+                <div>
+                    <span class="badge badge-dark"><i class="fa fa-building-o"></i> Company</span>
+                </div>
+                <div>
+                  {{ job.company }}
+                </div>
+              </div>
+          <div class="col-md-4">
+            <div>
+                <span class="badge badge-dark"><i class="fa fa-file-code-o"></i> Work Experience</span>
+            </div>
+            <div>
+              {{ job.minWorkExperience + " to " + job.maxWorkExperience + " years" }}
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div>
+              <span class="badge badge-dark"><i class="fa fa-location-arrow"></i> Location</span>
+            </div>
+            <div>
+              {{ job.location }}
+            </div>
+          </div>
+        </div>
+      
+        <div class="row">
+          <div class="col-md-4">
+            <div>
+                <span class="badge badge-dark"><i class="fa fa-industry"></i> Industry</span>
+            </div>
+            <div>
+              {{ job.industry }}
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div>
+                <span class="badge badge-dark"><i class="fa fa-cogs"></i> Functional Area</span>
+            </div>
+            <div>
+              {{ job.functionalArea }}
+            </div>
+          </div>
+          <div class="col-md-4">
+              <div>
+                  <span class="badge badge-dark"><i class="fa fa-tag"></i> Requisition Id</span>
+              </div>
+              <div>
+                  {{ job.requisitionId }}
+              </div>
+            </div>
+        </div>
+      
+      </div>
+
+      <div class="container job-footer-container">
+          <div class="row">
+          
+              <div class="col-md-6 text-align-left">
+                  <i class="fa fa-calendar-o"></i> {{ job.postedDate }}
+              </div>
+              <div class="col-md-6 text-align-right">
+                  <i class="fa fa-user-o"></i> {{ job.postedBy.toLowerCase().charAt(0).toUpperCase() + job.postedBy.toLowerCase().slice(1) }}
+              </div>
+            </div>
+      </div>
+
+      <div class="container apply-button-container">
+        <div class="row text-align-center">
+          <div class="col-md-12 apply-button-column">
+            <button (click)="displayApplication = true" class="btn btn-warning main-button apply-button" type="button">
+              <span class="fa fa-check-square-o"></span> Apply
+            </button>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+  <p-dialog header="Apply" [(visible)]="displayApplication" [modal]="true">
+    <span>
+        To get referred for this job, please send your <b>Updated Resume</b> along with the <b>Requisition Id - {{ job.requisitionId }}</b> to <b>{{ job.postedBy.toLowerCase().charAt(0).toUpperCase() + job.postedBy.toLowerCase().slice(1) }}</b> at the below email address.
+        <br>
+        <br>
+        
+        <b>{{ job.posterEmail }}</b>
+    </span>
+        <p-footer>
+            <button type="button" pButton icon="pi pi-check" (click)="displayApplication = false" label="Okay"></button>
+        </p-footer>
+  </p-dialog> 
+
+
+

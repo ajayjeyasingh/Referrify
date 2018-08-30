@@ -1,0 +1,25 @@
+<div class="centered">
+  <div class="jumbotron" *ngIf="!isUserAuthenticated()">
+    <h1 class="display-3">Welcome to Referrify!</h1>
+    <p class="lead">Referrify is India's first online platform that connects Job Seekers directly with potential Employers by leveraging internal Employee Referral programs of organizations.</p>
+    
+
+    <button routerLink="/Register" type="button" class="btn btn-outline-warning main-button get-started-button">Get Started <i class="material-icons">arrow_forward</i></button>
+
+  </div>
+
+  <div class="jumbotron" *ngIf="isUserAuthenticated()">
+    <h1 class="display-3">Welcome back {{ getUsername() }}!</h1>
+    <p class="lead">Choose any of the options below to get started. Good Luck!</p>
+
+    <div class="row">
+      <div class="col-md-6">
+        <button routerLink="/Job/Find" type="button" class="btn btn-outline-warning main-button job-button">Find a job</button>
+      </div>
+      <div class="col-md-6">
+        <button routerLink="/Job/Post" type="button" class="btn btn-outline-warning main-button job-button">Post a job</button>
+      </div>
+    </div>
+  </div>
+
+</div>

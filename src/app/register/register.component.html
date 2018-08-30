@@ -1,0 +1,134 @@
+<div class="container" *ngIf="displayRegistrationForm">
+    <div class="row">
+        <div class="col-md-12">
+          <h2 class="heading">Tell us about yourself!</h2>
+        </div>
+      </div>
+      <hr>
+      <div class="companies-loading-spinner" *ngIf="areCompaniesLoading">
+        <mat-spinner [strokeWidth]="3" [diameter]="50"></mat-spinner>
+      </div>
+      <div class="row normal-text" *ngIf="!areCompaniesLoading">
+        <div class="col-md-12">
+          <form #f="ngForm" (ngSubmit)="createUser(f)">
+
+            <div class="form-group">
+              <label class="registration-form-label" for="company">Where do you work currently?</label>
+              <select #company="ngModel" [(ngModel)]="user.company" name="company" id="company" class="form-control">
+                <option value="">Select</option>
+                <option *ngFor="let c of companies" [ngValue]="c">{{ c.name }}</option>
+              </select>
+            </div>
+
+            <div *ngIf="user.company" class="form-group">
+              <label class="registration-form-label" for="email">What is your company email?</label>
+              <div class="input-group">
+                  <input [ngClass]="{'remove-right-border': isEmailDuplicateChecking}" (blur)="email.touched && email.valid && checkDuplicateEmail(email, user.company.domainName)" #email="ngModel" [(ngModel)]="user.email" type="text" name="email" id="email" class="form-control" pattern="^((?!@).)*$" placeholder="Ex. John-Doe" required>
+                  <div *ngIf="isEmailDuplicateChecking" class="input-group-append">
+                    <span class="input-group-text white-background"><i class="fa fa-circle-o-notch fa-spin"></i></span>
+                  </div>
+                  <div class="input-group-append">
+                    <span class="input-group-text domain-name">@{{ user.company.domainName }}</span>
+                  </div>  
+              </div>
+              
+              <small class="form-text text-muted">
+                Account verification email will be sent to this address.
+              </small>
+              <div *ngIf="email.touched && !email.valid" class="alert alert-danger">
+                Please enter a valid email.
+              </div>
+              <div *ngIf="email.touched && email.valid && email.value === emailPreviouslyEntered && isEmailDuplicate" class="alert alert-danger">
+                Email already exists.
+              </div>
+
+            </div>
+
+            <div *ngIf="user.company && user.email" class="form-group">
+              <label class="registration-form-label" for="username">Please choose an username for Referrify</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="material-icons">person</i>
+                  </span>
+                </div>
+                <input [ngClass]="{'remove-right-border': isUsernameDuplicateChecking}" (blur)="username.touched && username.valid && checkDuplicateUsername(username)" #username="ngModel" [(ngModel)]="user.username" name="username" id="username" type="text" class="form-control" pattern="[a-zA-Z0-9]{3,15}" maxlength="15" placeholder="Ex. JohnDoe" required>
+
+                <div *ngIf="isUsernameDuplicateChecking" class="input-group-append">
+                  <span class="input-group-text white-background"><i class="fa fa-circle-o-notch fa-spin"></i></span>
+                </div>
+
+              </div>
+              <small class="form-text text-muted">
+                Min 3 and max 15 characters. Only letters and numbers allowed.
+              </small>
+              <div *ngIf="username.touched && !username.valid" class="alert alert-danger">
+                Please enter a valid username.
+              </div>
+              <div *ngIf="username.touched && username.valid && username.value === usernamePreviouslyEntered && isUsernameDuplicate" class="alert alert-danger">
+                Username already exists.
+              </div>
+            </div>
+
+            <div *ngIf="user.company && user.email && user.username" class="form-group">
+              <label class="registration-form-label" for="password">Please choose a password for Referrify</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="material-icons">lock</i>
+                  </span>
+                </div>
+                <input #password="ngModel" [(ngModel)]="user.password" [type]="passwordType" name="password" id="password" class="form-control remove-right-border" pattern="^(?=.*[0-9])(?=.*[A-Z])(.+){8,15}$" maxlength="15" required>
+                <div (click)="passwordToggle()" class="input-group-append pointer">
+                    <span class="input-group-text white-background">
+                        <i class="material-icons">visibility</i>
+                    </span>
+                </div>
+              </div>
+              <small class="form-text text-muted">
+                Min 8 and max 15 characters. Min 1 uppercase letter and number.
+              </small>
+              <div *ngIf="password.touched && !password.valid" class="alert alert-danger">
+                Please enter a valid password.
+              </div>
+            </div>
+
+            <button [disabled]="!f.valid || isEmailDuplicate || isUsernameDuplicate || isEmailDuplicateChecking || isUsernameDuplicateChecking || isCreatingNewUser" *ngIf="user.company && user.email && user.username && user.password" class="btn btn-warning main-button medium-size-button"><i *ngIf="isCreatingNewUser" class="fa fa-circle-o-notch fa-spin"></i> Continue</button>
+
+          </form>
+        </div>
+      </div>
+</div>
+
+<div class="container" *ngIf="!displayRegistrationForm && isNewUserCreationSuccess">
+  <div class="row">
+      <div class="col-md-12">
+        <h2 class="heading">Hurray!</h2>
+        <h4 class="sub-heading">You are one step away from landing an amazing job!</h4>
+      </div>
+    </div>
+    <hr>
+    <div class="row normal-text">
+      <div class="col-md-12">
+        <p>A brand new account has been created for you at Referrify.</p>
+
+        <p>We have sent you a verification email. Please follow the link in the email to verify your account and login.</p>
+      </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="!displayRegistrationForm && !isNewUserCreationSuccess">
+    <div class="row">
+        <div class="col-md-12">
+          <h2 class="heading">Oops!</h2>
+          <h4 class="sub-heading">Something went amiss!</h4>
+        </div>
+      </div>
+      <hr>
+      <div class="row normal-text">
+        <div class="col-md-12">
+          <p>Please try again after some time. Thank you.</p>
+  
+        </div>
+      </div>
+  </div>
